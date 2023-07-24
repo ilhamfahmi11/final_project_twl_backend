@@ -3,9 +3,9 @@ import mongoose from "mongoose";
 import cors from "cors";
 import UserRoute from "./routes/UserRoute.js";
 
-app.use(cors());
-app.use(express.json());
 const app = express();
+app.use(express.json());
+app.use(cors());
 mongoose.connect('mongodb+srv://ilhamfahmi011:if111202@cluster0.9sxx3vm.mongodb.net/?retryWrites=true&w=majority',{
     useNewUrlParser: true,
     useUnifiedTopology: true
