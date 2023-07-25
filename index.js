@@ -4,29 +4,16 @@ import cors from "cors";
 import UserRoute from "./routes/UserRoute.js";
 
 const app = express();
+mongoose.connect('mongodb://localhost:27017/fullstack_db',{
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+});
+const db = mongoose.connection;
+db.on('error', (error) => console.log(error));
+db.once('open', () => console.log('Database Connected...'));
 
 app.use(cors());
 app.use(express.json());
+app.use(UserRoute);
 
-const port = 5000;
-
-const uri =
-  "mongodb+srv://ilhamfahmi011:if111202@cluster0.9sxx3vm.mongodb.net/?retryWrites=true&w=majority";
-
-// Connect to MongoDB
-mongoose
-  .connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => {
-    console.log("Connected to MongoDB");
-
-    // Set up routes after the database connection is established
-    app.use(UserRoute);
-
-    app.listen(port, () => {
-      console.log(`Server listening on port ${port}`);
-    });
-  })
-  .catch((error) => {
-    console.error("Error connecting to MongoDB:", error);
-    process.exit(1); // Stop the server if there's an error connecting to MongoDB
-  });
+app.listen(5000, ()=> console.log('Server up and running...'));
