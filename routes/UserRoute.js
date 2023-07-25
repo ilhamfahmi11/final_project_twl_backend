@@ -1,4 +1,4 @@
-import isAuthenticated from "../middleware/authmiddleware";
+import isAuthenticated from "../middleware/authmiddleware.js";
 import express from "express";
 import { 
     getUsers, 
