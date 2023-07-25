@@ -1,5 +1,4 @@
 import User from "../models/User.js";
-import jwt from "jsonwebtoken";
 
 // Register new user
 export const registerUser = async (req, res) => {
@@ -26,10 +25,6 @@ export const registerUser = async (req, res) => {
 export const loginUser = async (req, res) => {
   try {
     const { username, password } = req.body;
-
-    const token = jwt.sign({ user: user.username }, 'iyaaamz', { expiresIn: '1h' })
-    res.cookie('token', token, { maxAge: 3600000, httpOnly: true });
-
 
     // Find the user in the database by username
     const user = await User.findOne({ username });

@@ -1,4 +1,3 @@
-import isAuthenticated from "../middleware/authmiddleware.js";
 import express from "express";
 import { 
     getUsers, 
@@ -11,8 +10,8 @@ import {
 
 const router = express.Router();
 
-router.get('/users',isAuthenticated, getUsers);
-router.get('/users/:id',isAuthenticated, getUserById);
+router.get('/users', getUsers);
+router.get('/users/:id', getUserById);
 router.post('/users', saveUser);
 router.patch('/users/:id', updateUser);
 router.delete('/users/:id', deleteUser);
